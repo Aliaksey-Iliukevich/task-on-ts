@@ -1,27 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div>
+    <SearchInput 
+      label="Input value:" 
+      v-model="search"
+      class="class-1 class-2"
+      placeholder="Найти..."
+      @clear="handleClearInput"
+    />
+    <p>Search: {{ search }}</p>
+  </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+<script setup lang="ts">
+import { ref, Ref } from 'vue';
+import SearchInput from './components/SearchInput.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-});
-</script>
+const search: Ref<string> = ref('');
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+function handleClearInput(): void {
+  search.value = '';
+  console.log('Инпут очищен!');
 }
-</style>
+</script>
